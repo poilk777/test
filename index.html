@@ -2,53 +2,67 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
+    <title>Hello World</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            padding: 40px 60px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 500px;
-        }
-        h1 { color: #333; margin-bottom: 20px; font-size: 2.5em; }
-        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            margin: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; }
+        .container { background: white; border-radius: 20px; padding: 40px; max-width: 600px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center; }
+        h1 { color: #333; font-size: 2.5em; margin-bottom: 20px; }
+        p { color: #666; margin-bottom: 30px; }
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.3s; text-decoration: none; font-size: 1.1em; }
+        .btn-green { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; }
+        .btn-purple { background: linear-gradient(135deg, #8E2DE2, #4A00E0); color: white; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .form-box { max-width: 400px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 1em; }
+        input:focus { outline: none; border-color: #667eea; }
+        .submit-btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 1.1em; cursor: pointer; margin-top: 10px; }
+        .back-link { margin-top: 20px; display: inline-block; }
+        .back-link a { color: #667eea; text-decoration: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, World!</h1>
-        <p>Добро пожаловать на первую страницу сайта.</p>
-        <a href="second.html" class="btn">Перейти на вторую страницу →</a>
-        <br><br>
-        <a href="second.html" class="btn">Или нажмите здесь</a>
+    <!-- Главная -->
+    <div id="main" class="container">
+        <h1>👋 Hello, World!</h1>
+        <p>Добро пожаловать на наш сайт</p>
+        <div class="btn-group">
+            <a onclick="showForm('register')" class="btn btn-green">Регистрация</a>
+            <a onclick="showForm('login')" class="btn btn-purple">Вход</a>
+        </div>
     </div>
+    
+    <!-- Регистрация -->
+    <div id="register" style="display:none" class="container form-box">
+        <h1>📝 Регистрация</h1>
+        <form onsubmit="regSubmit(event)">
+            <div class="input-group"><label for="regName">Имя *</label><input type="text" id="regName" required></div>
+            <div class="input-group"><label for="regEmail">Email *</label><input type="email" id="regEmail" required></div>
+            <div class="input-group"><label for="regPass">Пароль *</label><input type="password" id="regPass" required></div>
+            <button class="submit-btn btn-green">Зарегистрироваться</button>
+        </form>
+        <div class="back-link"><a href="#" onclick="hideAll()">← Назад</a></div>
+    </div>
+    
+    <!-- Вход -->
+    <div id="login" style="display:none" class="container form-box">
+        <h1>🔐 Вход</h1>
+        <form onsubmit="loginSubmit(event)">
+            <div class="input-group"><label for="logEmail">Email *</label><input type="email" id="logEmail" required></div>
+            <div class="input-group"><label for="logPass">Пароль *</label><input type="password" id="logPass" required></div>
+            <button class="submit-btn btn-purple">Войти</button>
+        </form>
+        <div class="back-link"><a href="#" onclick="hideAll()">← Назад</a></div>
+    </div>
+    
+    <script>
+        function showForm(f) { hideAll(); document.getElementById(f).style.display='block'; }
+        function hideAll() { ['main','register','login'].forEach(i=>document.getElementById(i).style.display='none'); document.getElementById('main').style.display='block'; }
+        function regSubmit(e) { e.preventDefault(); alert('✅ Регистрация!\nИмя: '+document.getElementById('regName').value+'\nEmail: '+document.getElementById('regEmail').value); hideAll(); e.target.reset(); }
+        function loginSubmit(e) { e.preventDefault(); alert('✅ Вход выполнен!\n' + document.getElementById('logEmail').value); hideAll(); e.target.reset(); }
+    </script>
 </body>
 </html>
