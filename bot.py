@@ -1,31 +1,25 @@
-import asyncio
-from aiogram import Bot, Dispatcher, types
-from aiogram.filters import Command
-import os
+import telebot
+from telebot import types
 
-# Токен бота (замените на свой)
-BOT_TOKEN = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
+# Создаем бота
+BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'  # Вставьте токен от @BotFather
+bot = telebot.TeleBot(BOT_TOKEN)
 
-# Инициализация бота и диспетчера
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
 
-# Обработчик команды /start
-@dp.message(Command("start"))
-async def cmd_start(message: types.Message):
-    await message.answer("Привет! Я бот, отвечающий 'hello world' на любые сообщения!")
+@bot.message_handler(commands=['start', 'help'])
+def send_welcome(message):
+    """Приветствие при команде /start"""
+    welcome_message = """👋 Привет! Я бот, который отвечает 'hello world' на ваши сообщения!
 
-# Общий обработчик для всех текстовых сообщений
-@dp.message(lambda message: True)
-async def echo_hello_world(message: types.Message):
-    await message.answer("hello world")
+Попробуйте написать мне что-нибудь, и я отвечу!"""
+    bot.reply_to(message, welcome_message)
 
-# Запуск бота
-async def main():
-    await dp.start_polling(bot)
 
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("Бот остановлен")
+@bot.message_handler(content_types=['text'])
+def handle_text(message):
+    """Обработка текстовых сообщений"""
+    bot.reply_to(message, "hello world")
+
+
+print("Бот запущен...")
+bot.infinity_polling()
