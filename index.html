@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная страница</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -20,7 +15,6 @@
             align-items: center;
             padding: 20px;
         }
-        
         .container {
             background: white;
             padding: 40px 60px;
@@ -29,19 +23,8 @@
             text-align: center;
             max-width: 500px;
         }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        
-        p {
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
+        h1 { color: #333; margin-bottom: 20px; font-size: 2.5em; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -56,25 +39,16 @@
             border: none;
             cursor: pointer;
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-secondary {
-            background: #f093fb;
-            background: linear-gradient(to right, #f5576c, #f093fb);
-        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Hello, World!</h1>
-        <p>Добро пожаловать на первую страницу нашего простого сайта.</p>
+        <p>Добро пожаловать на первую страницу сайта.</p>
         <a href="second.html" class="btn">Перейти на вторую страницу →</a>
         <br><br>
-        <a href="second.html" class="btn btn-secondary">Или нажмите здесь</a>
+        <a href="second.html" class="btn">Или нажмите здесь</a>
     </div>
 </body>
 </html>
