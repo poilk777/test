@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вторая страница</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -20,7 +15,6 @@
             align-items: center;
             padding: 20px;
         }
-        
         .container {
             background: white;
             padding: 40px 60px;
@@ -29,19 +23,8 @@
             text-align: center;
             max-width: 500px;
         }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        
-        p {
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
+        h1 { color: #333; margin-bottom: 20px; font-size: 2.5em; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.6; }
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -56,31 +39,16 @@
             border: none;
             cursor: pointer;
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
-        }
-        
-        .home-link {
-            margin-top: 20px;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .home-link:hover {
-            text-decoration: underline;
-        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4); }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🎉 Вторая страница!</h1>
-        <p>Вы успешно перешли со главной страницы на вторую страницу сайта.</p>
+        <p>Вы успешно перешли со главной страницы.</p>
         <a href="index.html" class="btn">← Вернуться на главную</a>
         <br><br>
-        <a href="#" onclick="history.back()" class="home-link">Или используйте кнопку "Назад"</a>
+        <a href="#" onclick="history.back()">Или нажмите "Назад"</a>
     </div>
 </body>
 </html>
