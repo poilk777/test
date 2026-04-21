@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Красное Приложение</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #c42f2f);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        h1 { 
+            margin-bottom: 40px; 
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover { transform: scale(1.1); }
+        
+        .btn-white {
+            background: white;
+            color: #ff6b6b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-red {
+            background: #c42f2f;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .counter {
+            font-size: 2em;
+            background: rgba(255,255,255,0.2);
+            padding: 20px 40px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🔴 Красное Приложение</h1>
+        
+        <div class="buttons">
+            <button class="btn-white" onclick="addCount()">Нажми меня!</button>
+            <button class="btn-red" onclick="addCount()">И я тоже!</button>
+            <button class="btn-red" onclick="resetCount()">Сбросить</button>
+        </div>
+        
+        <div class="counter">
+            Нажатий: <span id="count">0</span>
+        </div>
+    </div>
+    
+    <script>
+        let count = 0;
+        
+        function addCount() {
+            count++;
+            document.getElementById('count').textContent = count;
+        }
+        
+        function resetCount() {
+            count = 0;
+            document.getElementById('count').textContent = 0;
+        }
+    </script>
+</body>
+</html>
