@@ -1,25 +1,32 @@
-import telebot
-from telebot import types
+import asyncio
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters import CommandStart
+import os
 
-# Создаем бота
-BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE'  # Вставьте токен от @BotFather
-bot = telebot.TeleBot(BOT_TOKEN)
+# Токен бота (вставьте ваш токен от @BotFather или используйте переменную окружения)
+BOT_TOKEN = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
 
-
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    """Приветствие при команде /start"""
-    welcome_message = """👋 Привет! Я бот, который отвечает 'hello world' на ваши сообщения!
-
-Попробуйте написать мне что-нибудь, и я отвечу!"""
-    bot.reply_to(message, welcome_message)
+bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher()
 
 
-@bot.message_handler(content_types=['text'])
-def handle_text(message):
-    """Обработка текстовых сообщений"""
-    bot.reply_to(message, "hello world")
+@dp.message(CommandStart())
+async def send_welcome(message: types.Message):
+    await message.answer("Привет! Я эхо-бот. Напишите мне что-нибудь, и я отправлю вам это же сообщение обратно! 😊")
 
 
-print("Бот запущен...")
-bot.infinity_polling()
+@dp.message()
+async def echo_handler(message: types.Message):
+    # Отправляем то же сообщение обратно
+    await message.answer(message.text or str(message))
+
+
+async def main():
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nБот выключен!")
